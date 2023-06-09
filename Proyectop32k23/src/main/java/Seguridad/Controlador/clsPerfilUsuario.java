@@ -27,6 +27,30 @@ public class clsPerfilUsuario {
     return dao.obtenerNombresUsuarios();
     }
 
+    public ArrayList<String> obtenerNombreCarrera() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreCarrera();
+    }
+    
+        public ArrayList<String> obtenerNombreSede() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreSede();
+    }
+        
+            public ArrayList<String> obtenerNombreJornada() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreJornada();
+    }
+            
+                public ArrayList<String> obtenerNombreSeccion() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreSeccion();
+    }
+                
+                    public ArrayList<String> obtenerNombreAula() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreAula();
+    }
 
     public void cargarTabla(DefaultTableModel modelo) {
         daoPerfilUsuario dao = new daoPerfilUsuario();
@@ -42,14 +66,14 @@ public void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
         daoPerfilUsuario dao = new daoPerfilUsuario();
         dao.eliminarPerfilesUsuario(modelo, usuario);
     }
-public void asignarunPerfilesUsuario(String pernombre, String usuario) {
+public void asignarunPerfilesUsuario(String pernombre, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {
         daoPerfilUsuario dao = new daoPerfilUsuario();
-      dao.asignarunPerfilesUsuario(pernombre, usuario);
+      dao.asignarunPerfilesUsuario(pernombre, usuario, carrera, sede, jornada, seccion, aula, nota);
     }
 
-public void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario) {
+public void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {
         daoPerfilUsuario dao = new daoPerfilUsuario();
-        dao.asignartodoPerfilesUsuario(modelo, usuario);
+        dao.asignartodoPerfilesUsuario(modelo, usuario, carrera, sede, jornada, seccion, aula, nota);
     }
 
    public void eliminarunPerfilesUsuario(String pernombre, String usuario) {

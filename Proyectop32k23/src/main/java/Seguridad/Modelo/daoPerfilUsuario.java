@@ -32,19 +32,19 @@ public class daoPerfilUsuario {
 
     try {
         // 1. Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
         // 2. Crear el objeto Statement
         Statement stmt = con.createStatement();
 
         // 3. Ejecutar la consulta SQL
-        String sql = "SELECT usunombre FROM tbl_usuario";
+        String sql = "SELECT nombre_alumno FROM alumnos";
         ResultSet rs = stmt.executeQuery(sql);
 
         // 4. Recuperar los resultados
         while (rs.next()) {
             // 5. Agregar los elementos al ArrayList
-            nombresUsuarios.add(rs.getString("usunombre"));
+            nombresUsuarios.add(rs.getString("nombre_alumno"));
         }
 
         // 6. Cerrar la conexión
@@ -59,22 +59,183 @@ public class daoPerfilUsuario {
     return nombresUsuarios;
 }
     
-public void cargarTabla(DefaultTableModel modelo) {
+    public ArrayList<String> obtenerNombreCarrera() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
     try {
         // 1. Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
         // 2. Crear el objeto Statement
         Statement stmt = con.createStatement();
 
         // 3. Ejecutar la consulta SQL
-        String sql = "SELECT pernombre FROM tbl_perfil";
+        String sql = "SELECT nombre_carrera FROM carreras";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_carrera"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+    
+        public ArrayList<String> obtenerNombreSede() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_sede FROM sedes";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_sede"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+        
+            public ArrayList<String> obtenerNombreJornada() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_jornada FROM jornadas";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_jornada"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+            
+                public ArrayList<String> obtenerNombreSeccion() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_seccion FROM secciones";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_seccion"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+                
+                    public ArrayList<String> obtenerNombreAula() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_aula FROM aulas";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_aula"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+                    
+                    
+public void cargarTabla(DefaultTableModel modelo) {
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_curso FROM cursos";
         ResultSet rs = stmt.executeQuery(sql);
 
         // 5. Recuperar los resultados y agregarlos al modelo de datos
         while (rs.next()) {
             Object[] fila = new Object[1];
-            fila[0] = rs.getString("pernombre");
+            fila[0] = rs.getString("nombre_curso");
             modelo.addRow(fila);
         }
 
@@ -94,24 +255,24 @@ public ArrayList<String> obtenerPerfilesUsuario(String usuario) {
 
     try {
         // 1. Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
         // 2. Crear el objeto Statement
         Statement stmt = con.createStatement();
 
         // 3. Obtener el usuid del usuario seleccionado en el combo box
-        String sql = "SELECT usuid FROM tbl_usuario WHERE usunombre='" + usuario + "'";
+        String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("usuid");
+        String usuid = rs.getString("carnet_alumno");
 
         // 4. Ejecutar la consulta SQL para obtener los perfiles asociados al usuario
-        sql = "SELECT pernombre FROM tbl_perfilusuario pu INNER JOIN tbl_perfil p ON pu.perid=p.perid WHERE pu.usuid=" + usuid;
+        sql = "SELECT nombre_curso FROM asignacioncursosalumnos pu INNER JOIN cursos p ON pu.codigo_curso=p.codigo_curso WHERE pu.carnet_alumno=" + usuid;
         rs = stmt.executeQuery(sql);
 
         // 5. Recuperar los resultados
         while (rs.next()) {
-            perfilesUsuario.add(rs.getString("pernombre"));
+            perfilesUsuario.add(rs.getString("nombre_curso"));
         }
 
         // 6. Cerrar la conexión
@@ -126,48 +287,79 @@ public ArrayList<String> obtenerPerfilesUsuario(String usuario) {
     return perfilesUsuario;
 }
  //Boton Asignar todo trabajado por Meyglin del Rosario Rosales Ochoa 
-public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario) {
-    try {
+public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {
+try {
         // 1. Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
         // 2. Obtener el usuario seleccionado en el combo box
 
         // 3. Obtener el usuid del usuario seleccionado en el combo box
-        String sql = "SELECT usuid FROM tbl_usuario WHERE usunombre='" + usuario + "'";
+        String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
+        String sql2 = "SELECT codigo_carrera FROM carreras WHERE nombre_carrera='" + carrera + "'";
+        String sql3 = "SELECT codigo_sede FROM sedes WHERE nombre_sede='" + sede + "'";
+        String sql4 = "SELECT codigo_jornada FROM jornadas WHERE nombre_jornada='" + jornada + "'";
+        String sql5 = "SELECT codigo_seccion FROM secciones WHERE nombre_seccion='" + seccion + "'";
+        String sql6 = "SELECT codigo_aula FROM aulas WHERE nombre_aula='" + aula + "'";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
+        Statement stmt2 = con.createStatement();
+        ResultSet rs2 = stmt2.executeQuery(sql2);
+        Statement stmt3 = con.createStatement();
+        ResultSet rs3 = stmt3.executeQuery(sql3);
+        Statement stmt4 = con.createStatement();
+        ResultSet rs4 = stmt4.executeQuery(sql4);
+        Statement stmt5 = con.createStatement();
+        ResultSet rs5 = stmt5.executeQuery(sql5);
+        Statement stmt6 = con.createStatement();
+        ResultSet rs6 = stmt6.executeQuery(sql6);
         rs.next();
-        int usuid = rs.getInt("usuid");
+        rs2.next();
+        rs3.next();
+        rs4.next();
+        rs5.next();
+        rs6.next();
+        String usuid = rs.getString("carnet_alumno");
+        String codcarrera = rs2.getString("codigo_carrera");
+        String codsede = rs3.getString("codigo_sede");
+        String codjornada = rs4.getString("codigo_jornada");
+        String codseccion = rs5.getString("codigo_seccion");
+        String codaula = rs6.getString("codigo_aula");
 
         // 4. Recorrer los perfiles disponibles en la tabla jTable1
-        
         int filas = modelo.getRowCount();
         for (int i = 0; i < filas; i++) {
             String pernombre = modelo.getValueAt(i, 0).toString();
 
             // 5. Obtener el perid del perfil
-            sql = "SELECT perid FROM tbl_perfil WHERE pernombre='" + pernombre + "'";
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            int perid = rs.getInt("perid");
+            sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
+            ResultSet rsPer = stmt.executeQuery(sql);
+            rsPer.next();
+            String perid = rsPer.getString("codigo_curso");
 
             // 6. Insertar el registro en tbl_perfilusuario
-            sql = "INSERT INTO tbl_perfilusuario (perid, usuid) VALUES (" + perid + ", " + usuid + ")";
+            sql = "INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno, nota_asignacioncursoalumnos) VALUES (" + codcarrera + "," + codsede + "," + codjornada + "," + codseccion + "," + codaula + "," + perid + ", " + usuid + "," + nota + ")";
             stmt.executeUpdate(sql);
+            rsPer.close();
         }
 
         // 7. Cerrar la conexión y actualizar la tabla jTable2
         rs.close();
+        rs2.close();
+        rs3.close();
+        rs4.close();
+        rs5.close();
+        rs6.close();
         stmt.close();
+        stmt2.close();
+        stmt3.close();
+        stmt4.close();
+        stmt5.close();
+        stmt6.close();
         con.close();
- 
-
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
-    
-   
 };
 
 
@@ -177,26 +369,26 @@ public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario
 public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
     try {
         // 1. Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
         // 2. Crear el objeto Statement
         Statement stmt = con.createStatement();
 
         // 3. Obtener el usuid del usuario seleccionado en el combo box
-        String sql = "SELECT usuid FROM tbl_usuario WHERE usunombre='" + usuario + "'";
+        String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("usuid");
+        String usuid = rs.getString("carnet_alumno");
 
         // 4. Recorrer la tabla 2 y eliminar los perfiles asociados al usuario
         
         for (int i = 0; i < modelo.getRowCount(); i++) {
             String pernombre = modelo.getValueAt(i, 0).toString();
-            sql = "SELECT perid FROM tbl_perfil WHERE pernombre='" + pernombre + "'";
+            sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
             rs = stmt.executeQuery(sql);
             rs.next();
-            int perid = rs.getInt("perid");
-            sql = "DELETE FROM tbl_perfilusuario WHERE usuid=" + usuid + " AND perid=" + perid;
+            String perid = rs.getString("codigo_curso");
+            sql = "DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=" + usuid + " AND codigo_curso=" + perid;
             stmt.executeUpdate(sql);
         }
 
@@ -214,73 +406,125 @@ public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
 }
 
  //Boton Asignar un perfil, trabajado por María José Véliz Ochoa
-public  void asignarunPerfilesUsuario(String pernombre, String usuario) {   
+public  void asignarunPerfilesUsuario(String pernombre, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {   
             
             try {
-               // Conectar a la base de datos
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
-                
-                 // 2. Crear el objeto Statement
-                PreparedStatement stmt = con.prepareStatement("SELECT perid FROM tbl_perfil WHERE pernombre=?");
-                stmt.setString(1, pernombre);
-                ResultSet rs = stmt.executeQuery();
-                rs.next();
-                int perid = rs.getInt("perid");
-                
-                // Obtener el usuid del usuario seleccionado en el combo box
-                stmt = con.prepareStatement("SELECT usuid FROM tbl_usuario WHERE usunombre=?");
-                stmt.setString(1, usuario);
-                rs = stmt.executeQuery();
-                rs.next();
-                int usuid = rs.getInt("usuid");
-                
-                // Insertar el nuevo registro en tbl_perfilusuario
-                stmt = con.prepareStatement("INSERT INTO tbl_perfilusuario (perid, usuid) VALUES (?, ?)");
-                stmt.setInt(1, perid);
-                stmt.setInt(2, usuid);
-                stmt.executeUpdate();
-                
-                // Cerrar la conexión
-                rs.close();
-                stmt.close();
-                con.close();
-     
-                
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        // Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // Obtener el perid del perfil seleccionado en el combo box
+        PreparedStatement stmtPer = con.prepareStatement("SELECT codigo_curso FROM cursos WHERE nombre_curso = ?");
+        stmtPer.setString(1, pernombre);
+        ResultSet rsPer = stmtPer.executeQuery();
+        rsPer.next();
+        String perid = rsPer.getString("codigo_curso");
+
+        // Obtener el usuid del usuario seleccionado en el combo box
+        PreparedStatement stmtUsr = con.prepareStatement("SELECT carnet_alumno FROM alumnos WHERE nombre_alumno = ?");
+        stmtUsr.setString(1, usuario);
+        ResultSet rsUsr = stmtUsr.executeQuery();
+        rsUsr.next();
+        String usuid = rsUsr.getString("carnet_alumno");
+
+        // Obtener el código de la carrera
+        PreparedStatement stmtCarrera = con.prepareStatement("SELECT codigo_carrera FROM carreras WHERE nombre_carrera = ?");
+        stmtCarrera.setString(1, carrera);
+        ResultSet rsCarrera = stmtCarrera.executeQuery();
+        rsCarrera.next();
+        String codcarrera = rsCarrera.getString("codigo_carrera");
+
+        // Obtener el código de la sede
+        PreparedStatement stmtSede = con.prepareStatement("SELECT codigo_sede FROM sedes WHERE nombre_sede = ?");
+        stmtSede.setString(1, sede);
+        ResultSet rsSede = stmtSede.executeQuery();
+        rsSede.next();
+        String codsede = rsSede.getString("codigo_sede");
+
+        // Obtener el código de la jornada
+        PreparedStatement stmtJornada = con.prepareStatement("SELECT codigo_jornada FROM jornadas WHERE nombre_jornada = ?");
+        stmtJornada.setString(1, jornada);
+        ResultSet rsJornada = stmtJornada.executeQuery();
+        rsJornada.next();
+        String codjornada = rsJornada.getString("codigo_jornada");
+
+        // Obtener el código de la sección
+        PreparedStatement stmtSeccion = con.prepareStatement("SELECT codigo_seccion FROM secciones WHERE nombre_seccion = ?");
+        stmtSeccion.setString(1, seccion);
+        ResultSet rsSeccion = stmtSeccion.executeQuery();
+        rsSeccion.next();
+        String codseccion = rsSeccion.getString("codigo_seccion");
+
+        // Obtener el código del aula
+        PreparedStatement stmtAula = con.prepareStatement("SELECT codigo_aula FROM aulas WHERE nombre_aula = ?");
+        stmtAula.setString(1, aula);
+        ResultSet rsAula = stmtAula.executeQuery();
+        rsAula.next();
+        String codaula = rsAula.getString("codigo_aula");
+
+        // Insertar el nuevo registro en la tabla asignacioncursosalumnos
+        PreparedStatement stmtInsert = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno, nota_asignacioncursoalumnos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        stmtInsert.setString(1, codcarrera);
+        stmtInsert.setString(2, codsede);
+        stmtInsert.setString(3, codjornada);
+        stmtInsert.setString(4, codseccion);
+        stmtInsert.setString(5, codaula);
+        stmtInsert.setString(6, perid);
+        stmtInsert.setString(7, usuid);
+        stmtInsert.setFloat(8, nota);
+        stmtInsert.executeUpdate();
+
+        // Cerrar la conexión
+        rsPer.close();
+        rsUsr.close();
+        rsCarrera.close();
+        rsSede.close();
+        rsJornada.close();
+        rsSeccion.close();
+        rsAula.close();
+        stmtPer.close();
+        stmtUsr.close();
+        stmtCarrera.close();
+        stmtSede.close();
+        stmtJornada.close();
+        stmtSeccion.close();
+        stmtAula.close();
+        stmtInsert.close();
+        con.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
          
 }
 public void eliminarunPerfilesUsuario(String pernombre, String usuario) {   
             
             try {
         // Conectar a la base de datos
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/proyectop312023?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
         
         // Obtener el perid del perfil seleccionado
         Statement stmt = con.createStatement();
-        String sql = "SELECT perid FROM tbl_perfil WHERE pernombre='" + pernombre + "'";
+        String sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int perid = rs.getInt("perid");
+        String perid = rs.getString("codigo_curso");
         rs.close();
         stmt.close();
 
         
         // Obtener el usuid del usuario seleccionado en el combo box
         stmt = con.createStatement();
-        sql = "SELECT usuid FROM tbl_usuario WHERE usunombre='" + usuario + "'";
+        sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("usuid");
+        String usuid = rs.getString("carnet_alumno");
         rs.close();
         stmt.close();
 
         
         // Eliminar el registro de la tabla tbl_perfilusuario
-        PreparedStatement pstmt = con.prepareStatement("DELETE FROM tbl_perfilusuario WHERE usuid=? AND perid=?");
-        pstmt.setInt(1, usuid);
-        pstmt.setInt(2, perid);
+        PreparedStatement pstmt = con.prepareStatement("DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=? AND codigo_curso=?");
+        pstmt.setString(1, usuid);
+        pstmt.setString(2, perid);
         pstmt.executeUpdate();
         pstmt.close();
 
