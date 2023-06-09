@@ -287,8 +287,8 @@ public ArrayList<String> obtenerPerfilesUsuario(String usuario) {
     return perfilesUsuario;
 }
  //Boton Asignar todo trabajado por Meyglin del Rosario Rosales Ochoa 
-public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario) {
-    try {
+public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {
+try {
         // 1. Conectar a la base de datos
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
 
@@ -296,39 +296,70 @@ public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario
 
         // 3. Obtener el usuid del usuario seleccionado en el combo box
         String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
+        String sql2 = "SELECT codigo_carrera FROM carreras WHERE nombre_carrera='" + carrera + "'";
+        String sql3 = "SELECT codigo_sede FROM sedes WHERE nombre_sede='" + sede + "'";
+        String sql4 = "SELECT codigo_jornada FROM jornadas WHERE nombre_jornada='" + jornada + "'";
+        String sql5 = "SELECT codigo_seccion FROM secciones WHERE nombre_seccion='" + seccion + "'";
+        String sql6 = "SELECT codigo_aula FROM aulas WHERE nombre_aula='" + aula + "'";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
+        Statement stmt2 = con.createStatement();
+        ResultSet rs2 = stmt2.executeQuery(sql2);
+        Statement stmt3 = con.createStatement();
+        ResultSet rs3 = stmt3.executeQuery(sql3);
+        Statement stmt4 = con.createStatement();
+        ResultSet rs4 = stmt4.executeQuery(sql4);
+        Statement stmt5 = con.createStatement();
+        ResultSet rs5 = stmt5.executeQuery(sql5);
+        Statement stmt6 = con.createStatement();
+        ResultSet rs6 = stmt6.executeQuery(sql6);
         rs.next();
+        rs2.next();
+        rs3.next();
+        rs4.next();
+        rs5.next();
+        rs6.next();
         String usuid = rs.getString("carnet_alumno");
+        String codcarrera = rs2.getString("codigo_carrera");
+        String codsede = rs3.getString("codigo_sede");
+        String codjornada = rs4.getString("codigo_jornada");
+        String codseccion = rs5.getString("codigo_seccion");
+        String codaula = rs6.getString("codigo_aula");
 
         // 4. Recorrer los perfiles disponibles en la tabla jTable1
-        
         int filas = modelo.getRowCount();
         for (int i = 0; i < filas; i++) {
             String pernombre = modelo.getValueAt(i, 0).toString();
 
             // 5. Obtener el perid del perfil
-            sql = "SELECT codigo_curso FROM cursos WHERE curso_nombre='" + pernombre + "'";
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            String perid = rs.getString("codigo_curso");
+            sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
+            ResultSet rsPer = stmt.executeQuery(sql);
+            rsPer.next();
+            String perid = rsPer.getString("codigo_curso");
 
             // 6. Insertar el registro en tbl_perfilusuario
-            sql = "INSERT INTO asignacioncursosalumnos (codigo_curso, carnet_alumno) VALUES (" + perid + ", " + usuid + ")";
+            sql = "INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno, nota_asignacioncursoalumnos) VALUES (" + codcarrera + "," + codsede + "," + codjornada + "," + codseccion + "," + codaula + "," + perid + ", " + usuid + "," + nota + ")";
             stmt.executeUpdate(sql);
+            rsPer.close();
         }
 
         // 7. Cerrar la conexión y actualizar la tabla jTable2
         rs.close();
+        rs2.close();
+        rs3.close();
+        rs4.close();
+        rs5.close();
+        rs6.close();
         stmt.close();
+        stmt2.close();
+        stmt3.close();
+        stmt4.close();
+        stmt5.close();
+        stmt6.close();
         con.close();
- 
-
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
-    
-   
 };
 
 

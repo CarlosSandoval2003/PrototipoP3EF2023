@@ -71,9 +71,9 @@ public void asignarunPerfilesUsuario(String pernombre, String usuario) {
       dao.asignarunPerfilesUsuario(pernombre, usuario);
     }
 
-public void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario) {
+public void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {
         daoPerfilUsuario dao = new daoPerfilUsuario();
-        dao.asignartodoPerfilesUsuario(modelo, usuario);
+        dao.asignartodoPerfilesUsuario(modelo, usuario, carrera, sede, jornada, seccion, aula, nota);
     }
 
    public void eliminarunPerfilesUsuario(String pernombre, String usuario) {
