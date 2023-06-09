@@ -406,7 +406,7 @@ public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
 }
 
  //Boton Asignar un perfil, trabajado por María José Véliz Ochoa
-public  void asignarunPerfilesUsuario(String pernombre, String usuario, String carrera, String sede, String jornada, String seccion, String aula) {   
+public  void asignarunPerfilesUsuario(String pernombre, String usuario, String carrera, String sede, String jornada, String seccion, String aula, float nota) {   
             
             try {
         // Conectar a la base de datos
@@ -462,7 +462,7 @@ public  void asignarunPerfilesUsuario(String pernombre, String usuario, String c
         String codaula = rsAula.getString("codigo_aula");
 
         // Insertar el nuevo registro en la tabla asignacioncursosalumnos
-        PreparedStatement stmtInsert = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement stmtInsert = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno, nota_asignacioncursoalumnos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         stmtInsert.setString(1, codcarrera);
         stmtInsert.setString(2, codsede);
         stmtInsert.setString(3, codjornada);
@@ -470,6 +470,7 @@ public  void asignarunPerfilesUsuario(String pernombre, String usuario, String c
         stmtInsert.setString(5, codaula);
         stmtInsert.setString(6, perid);
         stmtInsert.setString(7, usuid);
+        stmtInsert.setFloat(8, nota);
         stmtInsert.executeUpdate();
 
         // Cerrar la conexión

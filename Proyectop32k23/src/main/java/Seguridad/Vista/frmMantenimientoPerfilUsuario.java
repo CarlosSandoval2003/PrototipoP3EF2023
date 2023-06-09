@@ -97,7 +97,7 @@ btnAsignarPerfilUsuario.addActionListener((ActionEvent e) -> {
          String aula = cbxAula.getSelectedItem().toString();
          float nota = Float.parseFloat(txtNota.getText());
         DefaultTableModel modelo = (DefaultTableModel) jTablePerfilUsuarioAsignado.getModel();
-        perfilUsuario.asignarunPerfilesUsuario(pernombre, usuario, carrera, sede, jornada, seccion, aula);
+        perfilUsuario.asignarunPerfilesUsuario(pernombre, usuario, carrera, sede, jornada, seccion, aula, nota);
 
         int resultadoBitacora = 0;
         clsBitacora bitacoraRegistro = new clsBitacora();
@@ -225,7 +225,7 @@ private void cargarComboBox() {
 private void cargarTabla() {
         clsPerfilUsuario perfilUsuario = new clsPerfilUsuario();
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Perfiles Disponibles");
+        modelo.addColumn("Cursos Disponibles");
         jTablePerfilUsuarioDisponible.setModel(modelo);
         perfilUsuario.cargarTabla(modelo);
     }
@@ -238,7 +238,7 @@ public void cargarTabla2(String usuario) {
     clsPerfilUsuario perfilUsuario = new clsPerfilUsuario();
     ArrayList<String> perfiles = perfilUsuario.obtenerPerfilesUsuario(usuario);
     DefaultTableModel modelo = new DefaultTableModel();
-    modelo.addColumn("Perfiles Asignados");
+    modelo.addColumn("Cursos Asignados");
     perfiles.forEach(perfil -> {
         Object[] fila = new Object[1];
         fila[0] = perfil;
@@ -296,7 +296,7 @@ public void cargarTabla2(String usuario) {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Asignación Perfiles a Usuarios");
+        setTitle("Asignación Cursos a Alumnos");
         setVisible(true);
 
         jTablePerfilUsuarioDisponible.setModel(new javax.swing.table.DefaultTableModel(
@@ -325,7 +325,7 @@ public void cargarTabla2(String usuario) {
         ));
         jScrollPanePerfilUsuario2.setViewportView(jTablePerfilUsuarioAsignado);
 
-        comboBoxPerfilUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoje un Usuario" }));
+        comboBoxPerfilUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoje un Alumno" }));
 
         btnAsignarPerfilUsuario.setText("Asignar");
         btnAsignarPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
