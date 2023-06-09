@@ -5,7 +5,7 @@
  */
 package Seguridad.Vista;
 
-import Inventarios.Vista.MdiInventario;
+
 import Seguridad.Controlador.clsUsuario;
 import java.awt.HeadlessException;
 
@@ -13,8 +13,7 @@ import javax.swing.JOptionPane;
 import Seguridad.Controlador.clsUsuarioConectado;
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsSeguridad;
-import Ventas.Vista.MdiVentas;
-import Bancos.Vista.MdiBancos;
+
 /**
  *
  * @author visitante
@@ -199,42 +198,7 @@ public class frmLogin extends javax.swing.JFrame {
                     
                     switch (areaSeleccionada) {
 
-                        case "Bancos":
-                        try {
-                            MdiBancos menu = new MdiBancos();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Compras":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Cuentas Corrientes":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Inventarios":
-                        try {
-                            MdiInventario menu = new MdiInventario();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
+
                         case "Seguridad":
                         try {
                             MdiSeguridad menu = new MdiSeguridad();
@@ -244,15 +208,7 @@ public class frmLogin extends javax.swing.JFrame {
                             System.out.println(e);
                         }   
                         break;
-                        case "Ventas":
-                        try {
-                            MdiVentas menu = new MdiVentas();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
+
                         default:
                             break;
                     }

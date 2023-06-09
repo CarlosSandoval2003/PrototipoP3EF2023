@@ -21,12 +21,12 @@ import java.util.List;
 public class daoPerfil {
 
 
-    private static final String SQL_SELECT = "SELECT perid, pernombre, perestatus FROM tbl_perfil";
-    private static final String SQL_INSERT = "INSERT INTO tbl_perfil(pernombre, perestatus) VALUES(?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_perfil SET pernombre=?, perestatus=? WHERE perid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_perfil WHERE perid=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT perid, pernombre, perestatus FROM tbl_perfil WHERE pernombre = ?";
-    private static final String SQL_SELECT_ID = "SELECT perid, pernombre, perestatus FROM tbl_perfil WHERE perid = ?";    
+    private static final String SQL_SELECT = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos";
+    private static final String SQL_INSERT = "INSERT INTO alumnos(carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno) VALUES(?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE alumnos SET nombre_alumno=?, direccion_alumno=?, telefono_alumno=?, email_alumno=?, estatus_alumno=?  WHERE carnet_alumno = ?";
+    private static final String SQL_DELETE = "DELETE FROM alumnos WHERE carnet_alumno=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos WHERE nombre_alumno = ?";
+    private static final String SQL_SELECT_ID = "SELECT carnet_alumno, nombre_alumno, direccion_alumno, telefono_alumno, email_alumno, estatus_alumno FROM alumnos WHERE carnet_alumno = ?";    
 
     public List<clsPerfil> consultaPerfil() {
 
@@ -43,12 +43,18 @@ public class daoPerfil {
             rs = stmt.executeQuery();
             while (rs.next()) {
 
-                int id = rs.getInt("perid");
-                String nombre = rs.getString("pernombre");
-                String estatus = rs.getString("perestatus");
+                String id = rs.getString("carnet_alumno");
+                String nombre = rs.getString("nombre_alumno");
+                String direccion = rs.getString("direccion_alumno");
+                String telefono = rs.getString("telefono_alumno");
+                String email = rs.getString("email_alumno");
+                String estatus = rs.getString("estatus_alumno");
                 clsPerfil perfil = new clsPerfil();
                 perfil.setIdPerfil(id);
                 perfil.setNombrePerfil(nombre);
+                perfil.setDireccionAlumno(direccion);
+                perfil.setTelefonoAlumno(telefono);
+                perfil.setEmailAlumno(email);
                 perfil.setEstatusPerfil(estatus);
                 perfiles.add(perfil);
 
@@ -73,8 +79,12 @@ public class daoPerfil {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
 
-            stmt.setString(1, perfil.getNombrePerfil());
-            stmt.setString(2, perfil.getEstatusPerfil());
+            stmt.setString(1, perfil.getIdPerfil());
+            stmt.setString(2, perfil.getNombrePerfil());
+            stmt.setString(3, perfil.getDireccionAlumno());
+            stmt.setString(4, perfil.getTelefonoAlumno());
+            stmt.setString(5, perfil.getEmailAlumno());
+            stmt.setString(6, perfil.getEstatusPerfil());
 
 
             System.out.println("ejecutando query:" + SQL_INSERT);
@@ -102,8 +112,11 @@ public class daoPerfil {
             stmt = conn.prepareStatement(SQL_UPDATE);
 
             stmt.setString(1, perfil.getNombrePerfil());
-            stmt.setString(2, perfil.getEstatusPerfil());
-            stmt.setInt(3, perfil.getIdPerfil());
+            stmt.setString(2, perfil.getDireccionAlumno());
+            stmt.setString(3, perfil.getTelefonoAlumno());
+            stmt.setString(4, perfil.getEmailAlumno());
+            stmt.setString(5, perfil.getEstatusPerfil());
+            stmt.setString(6, perfil.getIdPerfil());
 
 
             rows = stmt.executeUpdate();
@@ -131,7 +144,7 @@ public class daoPerfil {
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
 
-            stmt.setInt(1, perfil.getIdPerfil());
+            stmt.setString(1, perfil.getIdPerfil());
 
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
@@ -160,13 +173,18 @@ public class daoPerfil {
             stmt.setString(1, perfil.getNombrePerfil());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("perid");
-                String nombre = rs.getString("pernombre");
-                String estatus = rs.getString("perestatus");
+                String id = rs.getString("carnet_alumno");
+                String nombre = rs.getString("nombre_alumno");
+                String direccion = rs.getString("direccion_alumno");
+                String telefono = rs.getString("telefono_alumno");
+                String email = rs.getString("email_alumno");
+                String estatus = rs.getString("estatus_alumno");
 
-                //perfil = new clsPerfil();
                 perfil.setIdPerfil(id);
                 perfil.setNombrePerfil(nombre);
+                perfil.setDireccionAlumno(direccion);
+                perfil.setTelefonoAlumno(telefono);
+                perfil.setEmailAlumno(email);
                 perfil.setEstatusPerfil(estatus);
                 System.out.println(" registro consultado: " + perfil);                
 
@@ -194,17 +212,22 @@ public class daoPerfil {
 
             System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + perfil);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, perfil.getIdPerfil());            
+            stmt.setString(1, perfil.getIdPerfil());            
             //stmt.setString(1, perfil.getNombrePerfil());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("perid");
-                String nombre = rs.getString("pernombre");
-                String estatus = rs.getString("perestatus");
+                String id = rs.getString("carnet_alumno");
+                String nombre = rs.getString("nombre_alumno");
+                String direccion = rs.getString("direccion_alumno");
+                String telefono = rs.getString("telefono_alumno");
+                String email = rs.getString("email_alumno");
+                String estatus = rs.getString("estatus_alumno");
 
-                //perfil = new clsPerfil();
                 perfil.setIdPerfil(id);
                 perfil.setNombrePerfil(nombre);
+                perfil.setDireccionAlumno(direccion);
+                perfil.setTelefonoAlumno(telefono);
+                perfil.setEmailAlumno(email);
                 perfil.setEstatusPerfil(estatus);
                 System.out.println(" registro consultado: " + perfil);                
 
