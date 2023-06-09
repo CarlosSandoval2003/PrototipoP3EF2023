@@ -53,6 +53,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
         mnuConsultas = new javax.swing.JMenu();
         consultaBitacora = new javax.swing.JCheckBoxMenuItem();
         mnuReportes = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         mnuAyudas = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -164,6 +165,10 @@ public class MdiSeguridad extends javax.swing.JFrame {
         mnuGeneral.add(mnuConsultas);
 
         mnuReportes.setText("Reportes");
+
+        jMenuItem3.setText("Reporte Alumnos");
+        mnuReportes.add(jMenuItem3);
+
         mnuGeneral.add(mnuReportes);
 
         mnuAyudas.setText("Ayudas");
@@ -296,6 +301,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JCheckBoxMenuItem mantenimientoPerfiles;
     private javax.swing.JMenuItem mantenimientoUsuarios;

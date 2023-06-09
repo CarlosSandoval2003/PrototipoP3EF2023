@@ -39,10 +39,6 @@
 	</background>
 	<title>
 		<band height="132" splitType="Stretch">
-			<image>
-				<reportElement x="456" y="0" width="99" height="132" uuid="436d7894-ae8c-4cf3-9611-94a6bc3ce205"/>
-				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
-			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="5955a95b-3ff5-4910-93d0-d4a4633bd639"/>
 				<staticText>

@@ -503,7 +503,7 @@ public void cargarTabla2(String usuario) {
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/seguridad/reportes/PerfilUsuario.jrxml");
+                    + "/src/main/java/seguridad/reportes/rptCursosAlumnos.jrxml");
 	    print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Prueba");
