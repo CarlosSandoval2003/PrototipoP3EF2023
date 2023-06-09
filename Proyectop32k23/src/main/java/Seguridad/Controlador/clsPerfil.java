@@ -13,14 +13,17 @@ import Seguridad.Modelo.daoPerfil;
  /*Creado por María José Véliz Ochoa 9959-21-5909 */
 
 public class clsPerfil {
-    private int IdPerfil;
+    private String IdPerfil;
     private String NombrePerfil;
+    private String Direccion;
+    private String Telefono;
+    private String Email;
     private String EstatusPerfil;
 
     public clsPerfil() {
     }
 
-    public clsPerfil(int IdPerfil) {
+    public clsPerfil(String IdPerfil) {
         this.IdPerfil = IdPerfil;
     }
 
@@ -29,17 +32,17 @@ public class clsPerfil {
         this.EstatusPerfil = EstatusPerfil;
     }
 
-    public clsPerfil(int IdPerfil, String NombrePerfil, String EstatusPerfil) {
+    public clsPerfil(String IdPerfil, String NombrePerfil, String EstatusPerfil) {
         this.IdPerfil = IdPerfil;
         this.NombrePerfil = NombrePerfil;
         this.EstatusPerfil = EstatusPerfil;
     }
 
-    public int getIdPerfil() {
+    public String getIdPerfil() {
         return IdPerfil;
     }
 
-    public void setIdPerfil(int IdPerfil) {
+    public void setIdPerfil(String IdPerfil) {
         this.IdPerfil = IdPerfil;
     }
 
@@ -58,11 +61,35 @@ public class clsPerfil {
     public void setEstatusPerfil(String EstatusPerfil) {
         this.EstatusPerfil = EstatusPerfil;
     }
+    
+        public String getDireccionAlumno() {
+        return Direccion;
+    }
+
+    public void setDireccionAlumno(String Direccion) {
+        this.Direccion = Direccion;
+    }
+    
+        public String getTelefonoAlumno() {
+        return Telefono;
+    }
+
+    public void setTelefonoAlumno(String Telefono) {
+        this.Telefono = Telefono;
+    }
+    
+        public String getEmailAlumno() {
+        return Email;
+    }
+
+    public void setEmailAlumno(String Email) {
+        this.Email = Email;
+    }
 
     
     @Override
     public String toString() {
-        return "clsPerfil{" + "IdPerfil=" + IdPerfil + ", NombrePerfi=" + NombrePerfil + ", EstatusPerfil=" + EstatusPerfil + '}';
+        return "clsAlumnos{" + "IdPerfil=" + IdPerfil + ", NombrePerfi=" + NombrePerfil + ", DireccionAlumno=" + Direccion + ", TelefonoAlumno=" + Telefono +", EmailAlumno=" + Email +", EstatusPerfil=" + EstatusPerfil +'}';
     }
     //Metodos de acceso a la capa controlador
     public clsPerfil getBuscarInformacionPerfilPorNombre(clsPerfil perfil)

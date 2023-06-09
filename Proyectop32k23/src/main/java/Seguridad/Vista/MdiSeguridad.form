@@ -74,24 +74,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mantenimientoUsuariosActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mantenimientoAplicaciones">
-                  <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Aplicaciones"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mantenimientoAplicacionesActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mantenimientoModulos">
-                  <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Modulos"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mantenimientoModulosActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mantenimientoPerfiles">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
@@ -99,23 +81,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mantenimientoPerfilesActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mantenimientoTipoUsuarios">
-                  <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Tipo de Usuarios"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mantenimientoTipoUsuariosActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mITansaccionesCC">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Transacciones CC"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mITansaccionesCCActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -130,14 +95,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuProcesosActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="aplicacionesUsuarios">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Aplicaciones Usuarios"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aplicacionesUsuariosActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="menuperfilUsuario">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
@@ -145,14 +102,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuperfilUsuarioActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mIAplicacionPerfil">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Aplicacion Perfil"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mIAplicacionPerfilActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
