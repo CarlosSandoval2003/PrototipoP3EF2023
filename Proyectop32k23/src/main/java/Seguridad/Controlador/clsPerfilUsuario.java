@@ -27,6 +27,30 @@ public class clsPerfilUsuario {
     return dao.obtenerNombresUsuarios();
     }
 
+    public ArrayList<String> obtenerNombreCarrera() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreCarrera();
+    }
+    
+        public ArrayList<String> obtenerNombreSede() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreSede();
+    }
+        
+            public ArrayList<String> obtenerNombreJornada() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreJornada();
+    }
+            
+                public ArrayList<String> obtenerNombreSeccion() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreSeccion();
+    }
+                
+                    public ArrayList<String> obtenerNombreAula() {
+    daoPerfilUsuario dao = new daoPerfilUsuario();
+    return dao.obtenerNombreAula();
+    }
 
     public void cargarTabla(DefaultTableModel modelo) {
         daoPerfilUsuario dao = new daoPerfilUsuario();

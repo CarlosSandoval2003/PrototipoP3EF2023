@@ -59,6 +59,167 @@ public class daoPerfilUsuario {
     return nombresUsuarios;
 }
     
+    public ArrayList<String> obtenerNombreCarrera() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_carrera FROM carreras";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_carrera"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+    
+        public ArrayList<String> obtenerNombreSede() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_sede FROM sedes";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_sede"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+        
+            public ArrayList<String> obtenerNombreJornada() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_jornada FROM jornadas";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_jornada"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+            
+                public ArrayList<String> obtenerNombreSeccion() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_seccion FROM secciones";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_seccion"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+                
+                    public ArrayList<String> obtenerNombreAula() {
+    ArrayList<String> nombresUsuarios = new ArrayList<>();
+
+    try {
+        // 1. Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // 2. Crear el objeto Statement
+        Statement stmt = con.createStatement();
+
+        // 3. Ejecutar la consulta SQL
+        String sql = "SELECT nombre_aula FROM aulas";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        // 4. Recuperar los resultados
+        while (rs.next()) {
+            // 5. Agregar los elementos al ArrayList
+            nombresUsuarios.add(rs.getString("nombre_aula"));
+        }
+
+        // 6. Cerrar la conexión
+        rs.close();
+        stmt.close();
+        con.close();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return nombresUsuarios;
+}
+                    
+                    
 public void cargarTabla(DefaultTableModel modelo) {
     try {
         // 1. Conectar a la base de datos
@@ -103,7 +264,7 @@ public ArrayList<String> obtenerPerfilesUsuario(String usuario) {
         String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("carnet_alumno");
+        String usuid = rs.getString("carnet_alumno");
 
         // 4. Ejecutar la consulta SQL para obtener los perfiles asociados al usuario
         sql = "SELECT nombre_curso FROM asignacioncursosalumnos pu INNER JOIN cursos p ON pu.codigo_curso=p.codigo_curso WHERE pu.carnet_alumno=" + usuid;
@@ -138,7 +299,7 @@ public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("carnet_alumno");
+        String usuid = rs.getString("carnet_alumno");
 
         // 4. Recorrer los perfiles disponibles en la tabla jTable1
         
@@ -150,7 +311,7 @@ public  void asignartodoPerfilesUsuario(DefaultTableModel modelo, String usuario
             sql = "SELECT codigo_curso FROM cursos WHERE curso_nombre='" + pernombre + "'";
             rs = stmt.executeQuery(sql);
             rs.next();
-            int perid = rs.getInt("codigo_curso");
+            String perid = rs.getString("codigo_curso");
 
             // 6. Insertar el registro en tbl_perfilusuario
             sql = "INSERT INTO asignacioncursosalumnos (codigo_curso, carnet_alumno) VALUES (" + perid + ", " + usuid + ")";
@@ -186,7 +347,7 @@ public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
         String sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("carnet_alumno");
+        String usuid = rs.getString("carnet_alumno");
 
         // 4. Recorrer la tabla 2 y eliminar los perfiles asociados al usuario
         
@@ -195,7 +356,7 @@ public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
             sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
             rs = stmt.executeQuery(sql);
             rs.next();
-            int perid = rs.getInt("codigo_curso");
+            String perid = rs.getString("codigo_curso");
             sql = "DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=" + usuid + " AND codigo_curso=" + perid;
             stmt.executeUpdate(sql);
         }
@@ -225,19 +386,19 @@ public  void asignarunPerfilesUsuario(String pernombre, String usuario) {
                 stmt.setString(1, pernombre);
                 ResultSet rs = stmt.executeQuery();
                 rs.next();
-                int perid = rs.getInt("codigo_curso");
+                String perid = rs.getString("codigo_curso");
                 
                 // Obtener el usuid del usuario seleccionado en el combo box
                 stmt = con.prepareStatement("SELECT carnet_alumno FROM alumnos WHERE nombre_alumno=?");
                 stmt.setString(1, usuario);
                 rs = stmt.executeQuery();
                 rs.next();
-                int usuid = rs.getInt("carnet_alumno");
+                String usuid = rs.getString("carnet_alumno");
                 
                 // Insertar el nuevo registro en tbl_perfilusuario
                 stmt = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_curso, carnet_alumno) VALUES (?, ?)");
-                stmt.setInt(1, perid);
-                stmt.setInt(2, usuid);
+                stmt.setString(1, perid);
+                stmt.setString(2, usuid);
                 stmt.executeUpdate();
                 
                 // Cerrar la conexión
@@ -262,7 +423,7 @@ public void eliminarunPerfilesUsuario(String pernombre, String usuario) {
         String sql = "SELECT codigo_curso FROM cursos WHERE nombre_curso='" + pernombre + "'";
         ResultSet rs = stmt.executeQuery(sql);
         rs.next();
-        int perid = rs.getInt("codigo_curso");
+        String perid = rs.getString("codigo_curso");
         rs.close();
         stmt.close();
 
@@ -272,15 +433,15 @@ public void eliminarunPerfilesUsuario(String pernombre, String usuario) {
         sql = "SELECT carnet_alumno FROM alumnos WHERE nombre_alumno='" + usuario + "'";
         rs = stmt.executeQuery(sql);
         rs.next();
-        int usuid = rs.getInt("carnet_alumno");
+        String usuid = rs.getString("carnet_alumno");
         rs.close();
         stmt.close();
 
         
         // Eliminar el registro de la tabla tbl_perfilusuario
         PreparedStatement pstmt = con.prepareStatement("DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=? AND codigo_curso");
-        pstmt.setInt(1, usuid);
-        pstmt.setInt(2, perid);
+        pstmt.setString(1, usuid);
+        pstmt.setString(2, perid);
         pstmt.executeUpdate();
         pstmt.close();
 
