@@ -90,8 +90,14 @@ btnAsignarPerfilUsuario.addActionListener((ActionEvent e) -> {
         // Continuar con la acción del botón
         clsPerfilUsuario perfilUsuario = new clsPerfilUsuario();
         String usuario = comboBoxPerfilUsuario.getSelectedItem().toString();
+         String carrera = cbxCarrera.getSelectedItem().toString();
+         String sede = cbxSede.getSelectedItem().toString();
+         String jornada = cbxJornada.getSelectedItem().toString();
+         String seccion = cbxSeccion.getSelectedItem().toString();
+         String aula = cbxAula.getSelectedItem().toString();
+         float nota = Float.parseFloat(txtNota.getText());
         DefaultTableModel modelo = (DefaultTableModel) jTablePerfilUsuarioAsignado.getModel();
-        perfilUsuario.asignarunPerfilesUsuario(pernombre, usuario);
+        perfilUsuario.asignarunPerfilesUsuario(pernombre, usuario, carrera, sede, jornada, seccion, aula);
 
         int resultadoBitacora = 0;
         clsBitacora bitacoraRegistro = new clsBitacora();

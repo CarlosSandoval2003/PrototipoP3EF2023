@@ -406,41 +406,92 @@ public  void eliminarPerfilesUsuario(DefaultTableModel modelo, String usuario) {
 }
 
  //Boton Asignar un perfil, trabajado por María José Véliz Ochoa
-public  void asignarunPerfilesUsuario(String pernombre, String usuario) {   
+public  void asignarunPerfilesUsuario(String pernombre, String usuario, String carrera, String sede, String jornada, String seccion, String aula) {   
             
             try {
-               // Conectar a la base de datos
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
-                
-                 // 2. Crear el objeto Statement
-                PreparedStatement stmt = con.prepareStatement("SELECT codigo_curso FROM cursos WHERE nombre_curso=?");
-                stmt.setString(1, pernombre);
-                ResultSet rs = stmt.executeQuery();
-                rs.next();
-                String perid = rs.getString("codigo_curso");
-                
-                // Obtener el usuid del usuario seleccionado en el combo box
-                stmt = con.prepareStatement("SELECT carnet_alumno FROM alumnos WHERE nombre_alumno=?");
-                stmt.setString(1, usuario);
-                rs = stmt.executeQuery();
-                rs.next();
-                String usuid = rs.getString("carnet_alumno");
-                
-                // Insertar el nuevo registro en tbl_perfilusuario
-                stmt = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_curso, carnet_alumno) VALUES (?, ?)");
-                stmt.setString(1, perid);
-                stmt.setString(2, usuid);
-                stmt.executeUpdate();
-                
-                // Cerrar la conexión
-                rs.close();
-                stmt.close();
-                con.close();
-     
-                
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        // Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/siu?useSSL=false&serverTimezone=UTC", usuariobd, contrabd);
+
+        // Obtener el perid del perfil seleccionado en el combo box
+        PreparedStatement stmtPer = con.prepareStatement("SELECT codigo_curso FROM cursos WHERE nombre_curso = ?");
+        stmtPer.setString(1, pernombre);
+        ResultSet rsPer = stmtPer.executeQuery();
+        rsPer.next();
+        String perid = rsPer.getString("codigo_curso");
+
+        // Obtener el usuid del usuario seleccionado en el combo box
+        PreparedStatement stmtUsr = con.prepareStatement("SELECT carnet_alumno FROM alumnos WHERE nombre_alumno = ?");
+        stmtUsr.setString(1, usuario);
+        ResultSet rsUsr = stmtUsr.executeQuery();
+        rsUsr.next();
+        String usuid = rsUsr.getString("carnet_alumno");
+
+        // Obtener el código de la carrera
+        PreparedStatement stmtCarrera = con.prepareStatement("SELECT codigo_carrera FROM carreras WHERE nombre_carrera = ?");
+        stmtCarrera.setString(1, carrera);
+        ResultSet rsCarrera = stmtCarrera.executeQuery();
+        rsCarrera.next();
+        String codcarrera = rsCarrera.getString("codigo_carrera");
+
+        // Obtener el código de la sede
+        PreparedStatement stmtSede = con.prepareStatement("SELECT codigo_sede FROM sedes WHERE nombre_sede = ?");
+        stmtSede.setString(1, sede);
+        ResultSet rsSede = stmtSede.executeQuery();
+        rsSede.next();
+        String codsede = rsSede.getString("codigo_sede");
+
+        // Obtener el código de la jornada
+        PreparedStatement stmtJornada = con.prepareStatement("SELECT codigo_jornada FROM jornadas WHERE nombre_jornada = ?");
+        stmtJornada.setString(1, jornada);
+        ResultSet rsJornada = stmtJornada.executeQuery();
+        rsJornada.next();
+        String codjornada = rsJornada.getString("codigo_jornada");
+
+        // Obtener el código de la sección
+        PreparedStatement stmtSeccion = con.prepareStatement("SELECT codigo_seccion FROM secciones WHERE nombre_seccion = ?");
+        stmtSeccion.setString(1, seccion);
+        ResultSet rsSeccion = stmtSeccion.executeQuery();
+        rsSeccion.next();
+        String codseccion = rsSeccion.getString("codigo_seccion");
+
+        // Obtener el código del aula
+        PreparedStatement stmtAula = con.prepareStatement("SELECT codigo_aula FROM aulas WHERE nombre_aula = ?");
+        stmtAula.setString(1, aula);
+        ResultSet rsAula = stmtAula.executeQuery();
+        rsAula.next();
+        String codaula = rsAula.getString("codigo_aula");
+
+        // Insertar el nuevo registro en la tabla asignacioncursosalumnos
+        PreparedStatement stmtInsert = con.prepareStatement("INSERT INTO asignacioncursosalumnos (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        stmtInsert.setString(1, codcarrera);
+        stmtInsert.setString(2, codsede);
+        stmtInsert.setString(3, codjornada);
+        stmtInsert.setString(4, codseccion);
+        stmtInsert.setString(5, codaula);
+        stmtInsert.setString(6, perid);
+        stmtInsert.setString(7, usuid);
+        stmtInsert.executeUpdate();
+
+        // Cerrar la conexión
+        rsPer.close();
+        rsUsr.close();
+        rsCarrera.close();
+        rsSede.close();
+        rsJornada.close();
+        rsSeccion.close();
+        rsAula.close();
+        stmtPer.close();
+        stmtUsr.close();
+        stmtCarrera.close();
+        stmtSede.close();
+        stmtJornada.close();
+        stmtSeccion.close();
+        stmtAula.close();
+        stmtInsert.close();
+        con.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
          
 }
 public void eliminarunPerfilesUsuario(String pernombre, String usuario) {   
@@ -470,7 +521,7 @@ public void eliminarunPerfilesUsuario(String pernombre, String usuario) {
 
         
         // Eliminar el registro de la tabla tbl_perfilusuario
-        PreparedStatement pstmt = con.prepareStatement("DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=? AND codigo_curso");
+        PreparedStatement pstmt = con.prepareStatement("DELETE FROM asignacioncursosalumnos WHERE carnet_alumno=? AND codigo_curso=?");
         pstmt.setString(1, usuid);
         pstmt.setString(2, perid);
         pstmt.executeUpdate();
